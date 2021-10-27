@@ -1,0 +1,2 @@
+All data was sourced from the Food and Agriculture Organisation of the United Nations (FAOSTAT):
+https://www.fao.org/faostat/en/#data
