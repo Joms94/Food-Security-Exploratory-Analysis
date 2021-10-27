@@ -1,2 +1,6 @@
 All data was sourced from the Food and Agriculture Organisation of the United Nations (FAOSTAT):
 https://www.fao.org/faostat/en/#data
+
+FS_Gov_Expenditure tracks central, state and general government spending on various forms of agriculture.
+
+FS_Indicators tracks core food security KPIs, such as percent of children under the age of five who are stunted, average dietary energy requirements and percent of population using at least basic sanitation services.
