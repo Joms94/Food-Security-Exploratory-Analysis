@@ -12,7 +12,7 @@ RETURN
 			[Value] AS ValueName,
 			[Year],
 			(ROW_NUMBER() OVER(PARTITION BY Area
-							   ORDER BY [Year])) AS Row_No
+		   	ORDER BY [Year])) AS Row_No
 		FROM [Food Security Database].[dbo].[FS_Indicators]
 		WHERE Item LIKE @SearchString)
 	SELECT
@@ -43,7 +43,7 @@ RETURN
 			ge.[Value] AS MillionsUSD,
 			ge.[Year] AS Last_Update,
 			(ROW_NUMBER() OVER(PARTITION BY ge.Area
-							   ORDER BY ge.[Year] ASC)) AS Row_No
+		   	ORDER BY ge.[Year] ASC)) AS Row_No
 		FROM [Food Security Database].[dbo].[FS_Gov_Expenditure] AS ge
 		WHERE ge.Item LIKE @SearchString)
 	SELECT
@@ -84,8 +84,8 @@ GO
 
 
 -- Percent of people using basic clean drinking water facilities vs safely managed.
--- Purpose of view: Basic water access is a vital survival criterion for any country, but mere survival isn't enough. 
---					It's important for long-term health to know which countries have achieved safe access standards.
+-- Purpose of view: It's important for long-term health to know which countries have achieved safe access standards. 
+--		    
 
 CREATE OR ALTER VIEW dbo.SafeWater AS
 WITH WaterTable AS (
@@ -113,7 +113,7 @@ GO
 
 -- Prevalence of moderate to severe food insecurity (3-year average) by country.
 -- Purpose of view: Useful for prioritising which countries are in greatest need.
--- Note: More information on this metric available in Context.txt. Null values excluded. Uses most recent data available to each country.
+-- Note: More information on this metric available in README. Null values excluded. Uses most recent data available to each country.
 
 CREATE OR ALTER VIEW dbo.FoodSecurityAvg AS
 SELECT
