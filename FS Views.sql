@@ -56,6 +56,7 @@ RETURN
 	WHERE new.Row_No IS NULL;
 GO
 
+
 -- Percent of people using at least basic drinking water services.
 -- Purpose of view: Useful heuristic for quickly gauging basic water access.
 
