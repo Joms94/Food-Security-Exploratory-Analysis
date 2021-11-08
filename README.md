@@ -1,5 +1,5 @@
 # Exploring food security data using SQL and Tableau
-A brief exploration of food insecurity data and how it relates to various factors, such as management of water services, sanitation access and government spending.
+A brief exploration of food insecurity and how it relates to management of water services, sanitation access and government spending.
 
 # About the data
 All data was sourced from the Food and Agriculture Organisation of the United Nations (FAOSTAT):
