@@ -46,6 +46,7 @@ SELECT *
 FROM SanitationUse
 ORDER BY SanitationUsePct;
 
+
 -- Sanitation access vs expenditure
 -- Compares access to sanitation against environmental protection expenditure.
 -- Purpose of query: Could have an influence on sanitation and therefore warrant further analysis
