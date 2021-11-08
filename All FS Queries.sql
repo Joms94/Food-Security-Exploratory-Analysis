@@ -50,7 +50,7 @@ ORDER BY SanitationUsePct;
 -- Sanitation access vs expenditure
 -- Compares access to sanitation against environmental protection expenditure.
 -- Purpose of query: Could have an influence on sanitation and therefore warrant further analysis
---					(eg low environmental protection spending -> env degradation -> poor conditions). 
+--		     (eg low environmental protection spending -> env degradation -> poor conditions). 
 
 WITH comparison AS (
 	SELECT
@@ -93,8 +93,8 @@ ORDER BY bwu.WaterUsePct;
 -- How many countries have greater access to sanitation than clean water services, and to what extent?
 -- Compares percent of people using sanitation services against those using at least basic water services.
 -- Purpose of query: If significantly more people have access to sanitation than basic drinking water services,
---				   this implies a serious, perhaps dangerous, quality of water used in sanitation, if any at all.
---				   This would be worthy of additional research.
+--		     this implies a serious, perhaps dangerous, quality of water used in sanitation, if any at all.
+--		     This would be worthy of additional research.
 
 SELECT
 	bwu.Area,
@@ -150,9 +150,9 @@ INNER JOIN [Food Security Database].[dbo].[FS_Gov_Expenditure] AS ge
 	ON PercentSafe.Area = ge.Area
 WHERE ge.Item LIKE '%Environmental protection (Cent%'
 AND ge.[Year] IN (SELECT MAX([Year])
-				  FROM [Food Security Database].[dbo].[FS_Gov_Expenditure] AS ge
-				  INNER JOIN PercentSafe AS ps
-					ON ge.Area = ps.Area)
+		  FROM [Food Security Database].[dbo].[FS_Gov_Expenditure] AS ge
+		  INNER JOIN PercentSafe AS ps
+			ON ge.Area = ps.Area)
 ORDER BY PctSafelyManaged ASC;
 
 
@@ -162,7 +162,7 @@ ORDER BY PctSafelyManaged ASC;
 
 -- Prevalence of moderate to severe food insecurity (3-year average) by country.
 -- Purpose of query: Useful for prioritising which countries are in greatest need.
--- Note: More information on this metric available in Context.txt. Null values excluded. Uses most recent data available to each country.
+-- Note: More information on this metric available in README. Null values excluded. Uses most recent data available to each country.
 
 SELECT
 	Area,
@@ -187,7 +187,7 @@ ORDER BY FoodInsecurityPct DESC;
 
 -- Moderate food insecurity % in the total population vs severe.
 -- Purpose of query: It's useful for the purpose of humanitarian triage to know 
---				     which countries have the higher proportion of severe food insecurity vs moderate.
+--		     which countries have the higher proportion of severe food insecurity vs moderate.
 -- Note: PctOfTotalSevere shows the percent of a country's total insecurity that is severe.
 
 WITH sfi AS (
@@ -196,7 +196,7 @@ WITH sfi AS (
 		Item,
 		[Value] AS InsecurityPct,
 		(ROW_NUMBER() OVER(PARTITION BY Area
-							ORDER BY [Year] ASC)) AS Row_No -- Used to track most recent update to data.
+		ORDER BY [Year] ASC)) AS Row_No -- Used to track most recent update to data.
 	FROM [Food Security Database].[dbo].[FS_Indicators]
 	WHERE Item LIKE 'Prevalence of severe food%')
 SELECT
@@ -216,7 +216,7 @@ ORDER BY PctOfTotalSevere DESC;
 -- Does food insecurity decrease with agriculture spending?
 -- Purpose of query: Critical knowledge for organisations or governments seeking to improve food security.
 -- Note: 'InsecurityPct' refers to percent of the population suffering from moderate or severe food insecurity. 
---		 'MillionsUSD' refers to state and federal government agriculture, fisheries and forestry spending combined in 2015 USD.
+--	 'MillionsUSD' refers to state and federal government agriculture, fisheries and forestry spending combined in 2015 USD.
 
 WITH spending AS (
 	SELECT
@@ -225,7 +225,7 @@ WITH spending AS (
 		ge.[Value] AS MillionsUSD,
 		ge.[Year] AS Last_Update,
 		(ROW_NUMBER() OVER(PARTITION BY ge.Area
-						   ORDER BY ge.[Year] ASC)) AS Row_No
+	   	ORDER BY ge.[Year] ASC)) AS Row_No
 	FROM [Food Security Database].[dbo].[FS_Gov_Expenditure] AS ge
 	WHERE ge.Item LIKE 'Agriculture, forestry, fishing (Gen%')
 SELECT
